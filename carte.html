@@ -1,0 +1,1661 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <title>Shopping online</title>
+  </head>
+  <body class="" id="body" window.onload="nbProducts()">
+    <!--hidden div not used-->
+    <li id="liProd1" class=" d-none list-group-item" >
+        <table style="height:auto;">
+            <tbody>
+              <tr class="tr " >
+                <td class="item-img border-right align-middle"><img class="card-img-top" src="https://d2j7t5u190oygv.cloudfront.net/img/p/4/6/9/5/3/46953-large_default.jpg" height="130px" width="100px" alt=""></td>
+                <td class="item-descreption border-right align-middle text-center">Descreption</td>
+                <td class="item-pu border-right align-middle text-center">20,000 TND</td>
+                <td class="item-qte border-right input-qte align-middle text-center ">
+                  <div class="input-group mb-3 mx-auto ">
+                    <div class="input-group-prepend">
+                      <button onclick="increment(this)" class="btn btn-outline-secondary " type="button" id="button-addon1">-</button>
+                    </div>
+                    <input readonly type="text" id="input-qte" value="1" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                    <div class="input-group-append ">
+                        <button onclick="increment(this)" class="btn btn-outline-secondary " type="button" id="button-addon2">+</button>
+                    </div>                                 
+                  </div> 
+                </td>
+                <td  class="item-montant align-middle text-center "> <span class=" span-montant font-weight-bold text-danger">0,000 TND</span>  <br> <br><a class="remove-item" onclick="removeArticle(this)" ><img src="http://www.galerie-pour-tous.fr/image/256/973-qx9_vista_bin_empty.png" width="30px" height="30px" alt=""></a></td>                               
+              </tr>
+            </tbody>
+          </table>                      
+       </li>
+       <!--without table cloned div-->
+       <li id="liProd" class=" d-none list-group-item" >
+    <ul class=" ul-p d-lg-flex d-xl-flex px-0 align-content-center " >
+    <li class="item-img px-auto   "><img class="card-img-top" src="https://d2j7t5u190oygv.cloudfront.net/img/p/4/6/9/5/3/46953-large_default.jpg" height="130px" width="100px" alt=""></li>
+    <li class="item-descreption   mt-2  text-left">Description</li>
+    <li class="item-pu  mt-2 align-middle d-inline-block text-center">20,000 TND</li>
+    <li class="item-qte  mt-2  input-qte  align-middle text-center ">
+      <div class="input-group  mb-3 mx-auto ">
+        <div class="input-group-prepend">
+          <button onclick="increment(this)" class="btn btn-outline-secondary " type="button" id="button-addon1">-</button>
+        </div>
+        <input readonly type="text" id="input-qte" value="1" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+        <div class="input-group-append ">
+            <button onclick="increment(this)" class="btn btn-outline-secondary " type="button" id="button-addon2">+</button>
+        </div>                                 
+      </div> 
+    </li>
+    <li  class="item-montant mt-2 align-middle text-center  "> <span class=" span-montant font-weight-bold text-danger">0,000 TND</span>  <br> <br><a class="remove-item" onclick="removeArticle(this)" ><img src="http://www.galerie-pour-tous.fr/image/256/973-qx9_vista_bin_empty.png" width="30px" height="30px" alt=""></a></li>
+
+</ul>
+
+
+       </li>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="modal-panel"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header py-1 " style="background-color: rgba(236, 20, 20, 0.795); ">
+            <h5 class="modal-title text-white" id="exampleModalLongTitle">Bienvenue!</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Votre panier est vide pour le le moment !
+          </div>
+        </div>
+      </div>
+    </div>
+<!-- Modal for removing item-->
+<div
+class="modal fade"
+id="modal-panel"
+tabindex="-1"
+role="dialog"
+aria-labelledby="exampleModalCenterTitle"
+aria-hidden="true"
+>
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-header py-1 " style="background-color: rgba(236, 20, 20, 0.795); ">
+      <h5 class="modal-title text-white" id="exampleModalLongTitle">Bienvenue!</h5>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      Votre panier est vide pour le moment !
+    </div>
+  </div>
+</div>
+</div>
+    <header id="top-container" class="container-fluid px-0 rounded-0">
+      
+      <div
+        id="top-header"
+        class="d-flex  flex-column justify-content-lg-between justify-content-between  flex-lg-row flex-xl-row flex-md-row align-item-center  shadow rounded-0 container-fluid "
+      >
+      <div class="p-1 text-white d-lg-inline-block d-xl-inline-block d-none"> <img  class="location pb-1" height="20px" width="20px" src="./location.svg" alt=""> 35, Avenue des oranges -Sousse</div>
+        <div class="p-1 mx-auto mx-lg-0 mx-xl-0 d-inline-block social d-flex justify-content-between py-1 ">
+         <a href=""> <svg class ="svg" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+          width="30" height="30"
+          viewBox="0 0 30 30"
+          >    
+          <path d="M12,27V15H8v-4h4V8.852C12,4.785,13.981,3,17.361,3c1.619,0,2.475,0.12,2.88,0.175V7h-2.305C16.501,7,16,7.757,16,9.291V11 h4.205l-0.571,4H16v12H12z"></path></svg>
+        </a>
+         <a href=""> 
+          <svg class ="svg" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+          width="30" height="30"
+          viewBox="0 0 26 26"
+          ><g id="surface1"><path style=" " d="M 25.855469 5.574219 C 24.914063 5.992188 23.902344 6.273438 22.839844 6.402344 C 23.921875 5.75 24.757813 4.722656 25.148438 3.496094 C 24.132813 4.097656 23.007813 4.535156 21.8125 4.769531 C 20.855469 3.75 19.492188 3.113281 17.980469 3.113281 C 15.082031 3.113281 12.730469 5.464844 12.730469 8.363281 C 12.730469 8.773438 12.777344 9.175781 12.867188 9.558594 C 8.503906 9.339844 4.636719 7.246094 2.046875 4.070313 C 1.59375 4.847656 1.335938 5.75 1.335938 6.714844 C 1.335938 8.535156 2.261719 10.140625 3.671875 11.082031 C 2.808594 11.054688 2 10.820313 1.292969 10.425781 C 1.292969 10.449219 1.292969 10.46875 1.292969 10.492188 C 1.292969 13.035156 3.101563 15.15625 5.503906 15.640625 C 5.0625 15.761719 4.601563 15.824219 4.121094 15.824219 C 3.78125 15.824219 3.453125 15.792969 3.132813 15.730469 C 3.800781 17.8125 5.738281 19.335938 8.035156 19.375 C 6.242188 20.785156 3.976563 21.621094 1.515625 21.621094 C 1.089844 21.621094 0.675781 21.597656 0.265625 21.550781 C 2.585938 23.039063 5.347656 23.90625 8.3125 23.90625 C 17.96875 23.90625 23.25 15.90625 23.25 8.972656 C 23.25 8.742188 23.246094 8.515625 23.234375 8.289063 C 24.261719 7.554688 25.152344 6.628906 25.855469 5.574219 "></path></g></svg>
+        </a>
+          <a href="">
+          <svg class ="svg-youtube" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+          width="30" height="30"
+          viewBox="0 0 32 32"
+          ><g id="surface1"><path  d="M 8.78125 4 L 10.4375 9.4375 L 10.4375 12.96875 L 11.8125 12.96875 L 11.8125 9.25 L 13.4375 4 L 12.03125 4 L 11.15625 7.59375 L 11.09375 7.59375 L 10.1875 4 Z M 15.21875 6.1875 C 14.660156 6.1875 14.207031 6.351563 13.875 6.65625 C 13.542969 6.957031 13.375 7.363281 13.375 7.875 L 13.375 11.3125 C 13.375 11.875 13.550781 12.324219 13.875 12.65625 C 14.199219 12.988281 14.617188 13.15625 15.15625 13.15625 C 15.714844 13.15625 16.148438 12.976563 16.46875 12.65625 C 16.785156 12.332031 16.9375 11.910156 16.9375 11.34375 L 16.9375 7.90625 C 16.9375 7.402344 16.792969 6.976563 16.46875 6.65625 C 16.144531 6.335938 15.730469 6.1875 15.21875 6.1875 Z M 18 6.34375 L 18 11.90625 C 18 12.304688 18.074219 12.585938 18.21875 12.78125 C 18.363281 12.976563 18.589844 13.0625 18.875 13.0625 C 19.105469 13.0625 19.320313 13.015625 19.5625 12.875 C 19.808594 12.734375 20.054688 12.519531 20.28125 12.25 L 20.28125 12.96875 L 21.5 12.96875 L 21.5 6.34375 L 20.28125 6.34375 L 20.28125 11.375 C 20.167969 11.519531 20.046875 11.65625 19.90625 11.75 C 19.769531 11.84375 19.652344 11.875 19.5625 11.875 C 19.449219 11.875 19.363281 11.851563 19.3125 11.78125 C 19.257813 11.710938 19.21875 11.589844 19.21875 11.4375 L 19.21875 6.34375 Z M 15.15625 7.34375 C 15.320313 7.34375 15.464844 7.378906 15.5625 7.46875 C 15.664063 7.558594 15.6875 7.667969 15.6875 7.8125 L 15.6875 11.4375 C 15.6875 11.617188 15.660156 11.746094 15.5625 11.84375 C 15.460938 11.945313 15.324219 12 15.15625 12 C 14.996094 12 14.867188 11.941406 14.78125 11.84375 C 14.691406 11.742188 14.65625 11.617188 14.65625 11.4375 C 14.65625 11.4375 14.65625 7.8125 14.65625 7.8125 C 14.65625 7.667969 14.6875 7.558594 14.78125 7.46875 C 14.875 7.378906 15.003906 7.34375 15.15625 7.34375 Z M 15 14.53125 C 12.625 14.527344 10.308594 14.558594 8.03125 14.65625 C 6.441406 14.65625 5.125 15.957031 5.125 17.53125 C 5.03125 18.777344 4.996094 20.03125 5 21.28125 C 4.996094 22.527344 5.027344 23.75 5.125 25 C 5.125 26.578125 6.4375 27.875 8.03125 27.875 C 10.308594 27.96875 12.625 28.003906 15 28 C 17.378906 28.003906 19.695313 27.96875 21.96875 27.875 C 23.5625 27.875 24.875 26.578125 24.875 25 C 24.96875 23.75 25.003906 22.527344 25 21.28125 C 25.003906 20.03125 24.972656 18.777344 24.875 17.53125 C 24.875 15.957031 23.5625 14.65625 21.96875 14.65625 C 19.695313 14.5625 17.378906 14.527344 15 14.53125 Z M 6.5625 16.59375 L 10.75 16.59375 C 10.824219 16.59375 10.875 16.644531 10.875 16.71875 L 10.875 18 C 10.875 18.074219 10.824219 18.125 10.75 18.125 L 9.46875 18.125 L 9.46875 25.5625 C 9.46875 25.636719 9.417969 25.6875 9.34375 25.6875 L 7.96875 25.6875 C 7.894531 25.6875 7.8125 25.636719 7.8125 25.5625 L 7.8125 18.125 L 6.5625 18.125 C 6.488281 18.125 6.40625 18.074219 6.40625 18 L 6.40625 16.71875 C 6.40625 16.644531 6.488281 16.59375 6.5625 16.59375 Z M 15.375 16.59375 L 16.59375 16.59375 C 16.667969 16.59375 16.75 16.644531 16.75 16.71875 L 16.75 19.21875 C 16.851563 19.125 16.953125 19.0625 17.0625 19 C 17.269531 18.886719 17.476563 18.8125 17.6875 18.8125 C 18.117188 18.8125 18.425781 18.964844 18.65625 19.28125 C 18.875 19.585938 19 20.035156 19 20.59375 L 19 24.21875 C 19 24.714844 18.898438 25.105469 18.6875 25.375 C 18.46875 25.65625 18.152344 25.78125 17.75 25.78125 C 17.496094 25.78125 17.269531 25.730469 17.0625 25.625 C 16.953125 25.566406 16.851563 25.496094 16.75 25.40625 L 16.75 25.5625 C 16.75 25.636719 16.667969 25.6875 16.59375 25.6875 L 15.375 25.6875 C 15.300781 25.6875 15.25 25.636719 15.25 25.5625 L 15.25 16.71875 C 15.25 16.644531 15.300781 16.59375 15.375 16.59375 Z M 21.625 18.71875 C 22.21875 18.71875 22.675781 18.921875 23 19.28125 C 23.320313 19.636719 23.5 20.128906 23.5 20.78125 L 23.5 22.46875 C 23.5 22.542969 23.417969 22.59375 23.34375 22.59375 L 21.15625 22.59375 L 21.15625 23.6875 C 21.15625 24.085938 21.207031 24.238281 21.25 24.3125 C 21.285156 24.371094 21.371094 24.46875 21.5625 24.46875 C 21.714844 24.46875 21.820313 24.417969 21.875 24.34375 C 21.902344 24.304688 21.96875 24.164063 21.96875 23.6875 L 21.96875 23.21875 C 21.96875 23.144531 22.019531 23.09375 22.09375 23.09375 L 23.34375 23.09375 C 23.417969 23.09375 23.46875 23.144531 23.46875 23.21875 L 23.46875 23.71875 C 23.46875 24.421875 23.324219 24.949219 23 25.3125 C 22.671875 25.679688 22.175781 25.875 21.53125 25.875 C 20.949219 25.875 20.460938 25.671875 20.125 25.28125 C 19.792969 24.898438 19.625 24.378906 19.625 23.71875 L 19.625 20.78125 C 19.625 20.179688 19.820313 19.695313 20.1875 19.3125 C 20.554688 18.929688 21.042969 18.71875 21.625 18.71875 Z M 10.71875 18.90625 L 11.9375 18.90625 C 12.011719 18.90625 12.09375 18.957031 12.09375 19.03125 L 12.09375 24.03125 C 12.09375 24.195313 12.105469 24.257813 12.125 24.28125 C 12.132813 24.292969 12.148438 24.34375 12.25 24.34375 C 12.285156 24.34375 12.386719 24.316406 12.53125 24.21875 C 12.648438 24.140625 12.75 24.050781 12.84375 23.9375 L 12.84375 19.03125 C 12.84375 18.957031 12.894531 18.90625 12.96875 18.90625 L 14.1875 18.90625 C 14.261719 18.90625 14.3125 18.957031 14.3125 19.03125 L 14.3125 25.5625 L 14.34375 25.5625 C 14.34375 25.636719 14.261719 25.6875 14.1875 25.6875 L 12.96875 25.6875 C 12.894531 25.6875 12.84375 25.636719 12.84375 25.5625 L 12.84375 25.1875 C 12.683594 25.34375 12.511719 25.46875 12.34375 25.5625 C 12.078125 25.714844 11.820313 25.78125 11.5625 25.78125 C 11.238281 25.78125 11.011719 25.667969 10.84375 25.4375 C 10.683594 25.21875 10.59375 24.914063 10.59375 24.5 L 10.59375 19.03125 C 10.59375 18.957031 10.644531 18.90625 10.71875 18.90625 Z M 17.1875 20.125 C 17.105469 20.109375 17.007813 20.136719 16.90625 20.1875 C 16.847656 20.214844 16.808594 20.253906 16.75 20.3125 L 16.75 24.28125 C 16.824219 24.355469 16.871094 24.402344 16.9375 24.4375 C 17.011719 24.472656 17.105469 24.46875 17.1875 24.46875 C 17.34375 24.46875 17.390625 24.425781 17.40625 24.40625 C 17.445313 24.359375 17.46875 24.25 17.46875 24.03125 L 17.46875 20.65625 C 17.46875 20.46875 17.441406 20.339844 17.375 20.25 C 17.332031 20.191406 17.269531 20.140625 17.1875 20.125 Z M 21.5625 20.15625 C 21.417969 20.15625 21.308594 20.199219 21.25 20.28125 C 21.207031 20.339844 21.15625 20.476563 21.15625 20.78125 L 21.15625 21.3125 L 21.96875 21.3125 L 21.96875 20.78125 C 21.96875 20.480469 21.890625 20.347656 21.84375 20.28125 C 21.789063 20.203125 21.703125 20.15625 21.5625 20.15625 Z "></path></g></svg>
+        </a>
+        </div>
+        <div class="p-1  text-white d-lg-inline-block d-xl-inline-block d-none "><img class="mr-3" height="20px" width="20px" src="./phone-contact.svg" alt="">73 425 102 - 73 425 104</div>
+      </div>
+      <div class="container-fluid d-flex flex-column pt-0 px-0 align-items-center justify-content-center rounded-0">
+      <div
+        id="header"
+        class="header container-fluid d-flex flex-column pt-0 px-0 align-items-center justify-content-center  rounded-0 "
+      >
+      <div id="sub-header" class=" container-fluid d-flex flex-column flex-sm-row flex-lg-row flex-md-row flex-xl-row pt-0 px-0 align-items-center justify-content-center shadow  mb-1 rounded-0">
+        <a
+          class="navbar-brand mr-3  pb-3 d-flex flex-column justify-content-center "
+          href="index.html"
+        >
+          <img
+            id="header-logo"
+            src="./logo.png"
+            class="logo d-inline-block align-center "
+            alt=""
+          />
+        </a>
+
+        <form
+         id="header-search" class="form-inline d-none m-2 w-50 d-flex flex-row align-items-center "
+        >
+          <div class="input-group  m-2 flex-grow-1 flex-grow-sm-0 ">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Recherche"
+              aria-label="Recipient's username"
+              aria-describedby="button-addon2"
+            />
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                id="button-addon2"
+              >
+                <i class="fas fa-search" style="font-size:15px;"></i>
+              </button>
+            </div>
+          </div>
+        </form>
+        <div class=" d-flex align-items-center justify-content-center">
+        <a
+          id="link-panel"
+          class="  d-inline-block pl-2 my-1"
+          data-toggle="modal"
+          data-target="#modal-panel"
+        >
+          <div class="position-relative pt-2">
+            <i class="cart-shopping material-icons" style="font-size:43px"
+              >shopping_cart</i
+            >
+
+            <div
+              id="span-panier2"
+              class=" position-absolute badge badge-danger"
+            >
+              0
+            </div>
+          </div>
+        </a>
+        <a
+        id="wishlist"
+          class="pl-3  d-inline-block"
+          data-toggle="tooltip"
+          data-placement="bottom"
+          title="Your wish-list"
+        >
+          <div class="position-relative pt-2">
+            <i class="wishlist fa fa-heart-o" style="font-size:33px;"></i>
+            <div
+              id="span-wishlist"
+              class=" position-absolute badge badge-danger"
+            >
+              0
+            </div>
+          </div>
+        </a>
+        <div id="dropdown-user" class="dropdown">
+            <a id="user" class=""type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="user fas fa-user" style="font-size:30px"></i></a>
+            <div class="dropdown-menu " aria-labelledby="dropdownMenuButton">
+                <form class="px-2 py-2">
+                    <div class="form-group">
+                      <label for="exampleDropdownFormEmail1">Email address</label>
+                      <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleDropdownFormPassword1">Password</label>
+                      <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-danger">Se connecter</button>
+                  </form>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Nouveau client? <span class="text-primary">s'inscrire</span> </a>
+                
+              </div>
+          
+          </div>
+        <a
+      class="navbar-toggler d-lg-none"
+     
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+    <img height="30px" width="30px" class="ml-3" src="https://img.icons8.com/metro/50/000000/menu.png"/>
+      </a>
+    </div>
+        </div>
+        <!-- header for mobile-->
+        
+       <!--End header for mobile-->
+        <div id="menu" class="container-fluid mx-0 px-0  " >
+            <nav
+              class="navbar navbar-expand-lg navbar-light py-0 shadow px-4 rounded-0"
+              style="background-color: #fff; "
+            >
+              
+              
+    
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item dropdown m-0 ">
+                    <a
+                      class="nav-link dropdown-toggle"
+                      href="#"
+                      id="navbarDropdown"
+                      role="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      Informatique
+                    </a>
+                    <div
+                      class="dropdown-menu rounded-0"
+                      aria-labelledby="navbarDropdown"
+                    >
+                      <div class="container">
+                        <div class="row">
+                          <div class="col-md-2 my-0">
+                            <ul class="nav flex-column">
+                              <li class="nav-item p-0">
+                                <a
+                                  class="nav-link p-0  active font-weight-bold text-black"
+                                  >PCs portables</a
+                                >
+                              </li>
+                              <li class="nav-item p-0">
+                                <a class="nav-link" p-0 href="#">PC portable</a>
+                              </li>
+                              <li class="nav-item p-0">
+                                <a class="nav-link" p-0 href="#"
+                                  >PC portable Gamer</a
+                                >
+                              </li>
+                              <li class="nav-item p-0">
+                                <a class="nav-link" p-0 href="#">UltraBook</a>
+                              </li>
+                              <li class="nav-item p-0">
+                                <a class="nav-link" p-0 href="#">NetBook</a>
+                              </li>
+                            </ul>
+                          </div>
+                          <!-- /.col-md-4 -->
+                          <div class="col-md-2">
+                            <ul class="nav flex-column">
+                              <li class="nav-item mb-0 p-0">
+                                <a
+                                  class="nav-link p-0  active font-weight-bold text-black"
+                                  >Pcs de bureau</a
+                                >
+                              </li>
+                              <li class="nav-item mb-0 p-0">
+                                <a class="nav-link" p-0 href="#">PC de Bureau</a>
+                              </li>
+                              <li class="nav-item mb-0 p-0">
+                                <a class="nav-link" p-0 href="#">PC Gamer</a>
+                              </li>
+                              <li class="nav-item mb-0 p-0">
+                                <a class="nav-link" p-0 href="#">PC Tout en un</a>
+                              </li>
+                              <li class="nav-item mb-0 p-0">
+                                <a class="nav-link" p-0 href="#">iMac</a>
+                              </li>
+                            </ul>
+                          </div>
+                          <!-- /.col-md-4 -->
+                          <div class="col-md-2">
+                            <ul class="nav flex-column">
+                              <li class="nav-item p-0">
+                                <a
+                                  class="nav-link p-0  active font-weight-bold text-black"
+                                  >Tablettes tactiles</a
+                                >
+                              </li>
+                              <li class="nav-item p-0">
+                                <a class="nav-link" p-0 href="#"
+                                  >Tablettes Android</a
+                                >
+                              </li>
+                              <li class="nav-item p-0">
+                                <a class="nav-link" p-0 href="#"
+                                  >Tablettes Windows</a
+                                >
+                              </li>
+                              <li class="nav-item p-0">
+                                <a class="nav-link" p-0 href="#">iPad</a>
+                              </li>
+                              <li class="nav-item p-0">
+                                <a class="nav-link" p-0 href="#"
+                                  >Accessoires Tablette</a
+                                >
+                              </li>
+                            </ul>
+                          </div>
+                          <!-- /.col-md-4 -->
+                          <div class="col-md-2">
+                            <ul class="nav flex-column">
+                              <li class="nav-item p-0">
+                                <a
+                                  class="nav-link p-0  active font-weight-bold text-black"
+                                  >Tablettes tactiles</a
+                                >
+                              </li>
+                              <li class="nav-item p-0">
+                                <a class="nav-link" p-0 href="#"
+                                  >Tablettes Android</a
+                                >
+                              </li>
+                              <li class="nav-item p-0">
+                                <a class="nav-link" p-0 href="#"
+                                  >Tablettes Windows</a
+                                >
+                              </li>
+                              <li class="nav-item p-0">
+                                <a class="nav-link" p-0 href="#">iPad</a>
+                              </li>
+                              <li class="nav-item p-0">
+                                <a class="nav-link" p-0 href="#"
+                                  >Accessoires Tablette</a
+                                >
+                              </li>
+                            </ul>
+                          </div>
+                          <!-- /.col-md-4 -->
+                          <div class="col-md-4 align-center ">
+                            <img
+                              class="border border-dark d-inline-block"
+                     style="top: 20px;left:65px ;  "
+                              width="250px"
+                              height="150px"
+                              src="http://connectmultimedia.nc/wp-content/uploads/2018/06/ACCESSOIRES-INFORMATIQUE.png"
+                              alt=""
+                            />
+                          </div>
+                          <!-- /.col-md-4 -->
+                        </div>
+                      </div>
+                      <!-- /.container -->
+                    </div>
+                  </li>
+                  <li class="nav-item dropdown m-0">
+                    <a
+                      class="nav-link dropdown-toggle"
+                      href="#"
+                      id="navbarDropdown"
+                      role="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      Electromenager
+                    </a>
+                    <div
+                      class="dropdown-menu rounded-0"
+                      aria-labelledby="navbarDropdown"
+                    >
+                       <div class="container">
+                        <div class="row">
+                            <div class="col-md-2 my-0">
+                              <ul class="nav flex-column">
+                                <li class="nav-item p-0">
+                                  <a
+                                    class="nav-link p-0  active font-weight-bold text-black"
+                                    >PCs portables</a
+                                  >
+                                </li>
+                                <li class="nav-item p-0">
+                                  <a class="nav-link" p-0 href="#">PC portable</a>
+                                </li>
+                                <li class="nav-item p-0">
+                                  <a class="nav-link" p-0 href="#"
+                                    >PC portable Gamer</a
+                                  >
+                                </li>
+                                <li class="nav-item p-0">
+                                  <a class="nav-link" p-0 href="#">UltraBook</a>
+                                </li>
+                                <li class="nav-item p-0">
+                                  <a class="nav-link" p-0 href="#">NetBook</a>
+                                </li>
+                              </ul>
+                            </div>
+                            <!-- /.col-md-4 -->
+                            <div class="col-md-2">
+                              <ul class="nav flex-column">
+                                <li class="nav-item mb-0 p-0">
+                                  <a
+                                    class="nav-link p-0  active font-weight-bold text-black"
+                                    >Pcs de bureau</a
+                                  >
+                                </li>
+                                <li class="nav-item mb-0 p-0">
+                                  <a class="nav-link" p-0 href="#">PC de Bureau</a>
+                                </li>
+                                <li class="nav-item mb-0 p-0">
+                                  <a class="nav-link" p-0 href="#">PC Gamer</a>
+                                </li>
+                                <li class="nav-item mb-0 p-0">
+                                  <a class="nav-link" p-0 href="#">PC Tout en un</a>
+                                </li>
+                                <li class="nav-item mb-0 p-0">
+                                  <a class="nav-link" p-0 href="#">iMac</a>
+                                </li>
+                              </ul>
+                            </div>
+                            <!-- /.col-md-4 -->
+                            <div class="col-md-2">
+                              <ul class="nav flex-column">
+                                <li class="nav-item p-0">
+                                  <a
+                                    class="nav-link p-0  active font-weight-bold text-black"
+                                    >Tablettes tactiles</a
+                                  >
+                                </li>
+                                <li class="nav-item p-0">
+                                  <a class="nav-link" p-0 href="#"
+                                    >Tablettes Android</a
+                                  >
+                                </li>
+                                <li class="nav-item p-0">
+                                  <a class="nav-link" p-0 href="#"
+                                    >Tablettes Windows</a
+                                  >
+                                </li>
+                                <li class="nav-item p-0">
+                                  <a class="nav-link" p-0 href="#">iPad</a>
+                                </li>
+                                <li class="nav-item p-0">
+                                  <a class="nav-link" p-0 href="#"
+                                    >Accessoires Tablette</a
+                                  >
+                                </li>
+                              </ul>
+                            </div>
+                            <!-- /.col-md-4 -->
+                            <div class="col-md-2">
+                              <ul class="nav flex-column">
+                                <li class="nav-item p-0">
+                                  <a
+                                    class="nav-link p-0  active font-weight-bold text-black"
+                                    >Tablettes tactiles</a
+                                  >
+                                </li>
+                                <li class="nav-item p-0">
+                                  <a class="nav-link" p-0 href="#"
+                                    >Tablettes Android</a
+                                  >
+                                </li>
+                                <li class="nav-item p-0">
+                                  <a class="nav-link" p-0 href="#"
+                                    >Tablettes Windows</a
+                                  >
+                                </li>
+                                <li class="nav-item p-0">
+                                  <a class="nav-link" p-0 href="#">iPad</a>
+                                </li>
+                                <li class="nav-item p-0">
+                                  <a class="nav-link" p-0 href="#"
+                                    >Accessoires Tablette</a
+                                  >
+                                </li>
+                              </ul>
+                            </div>
+                            <!-- /.col-md-4 -->
+                            <div class="col-md-4 align-center ">
+                              <img
+                                class="border border-dark d-inline-block"
+                       style="top: 20px;left:65px ;  "
+                                width="250px"
+                                height="150px"
+                                src="http://connectmultimedia.nc/wp-content/uploads/2018/06/ACCESSOIRES-INFORMATIQUE.png"
+                                alt=""
+                              />
+                            </div>
+                            <!-- /.col-md-4 -->
+                          </div>
+                        </div>
+                        <!-- /.container -->
+                    </div>
+                  </li>
+                  <li class="nav-item dropdown m-0">
+                    <a
+                      class="nav-link dropdown-toggle"
+                      href="#"
+                      id="navbarDropdown"
+                      role="button"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false"
+                    >
+                      Bureautique
+                    </a>
+                    <div
+                      class="dropdown-menu rounded-0"
+                      aria-labelledby="navbarDropdown"
+                    >
+                    <div class="container">
+                        <div class="row">
+                          <div class="col-md-2 my-0">
+                            <ul class="nav flex-column">
+                              <li class="nav-item p-0">
+                                <a
+                                  class="nav-link p-0  active font-weight-bold text-black"
+                                  >PCs portables</a
+                                >
+                              </li>
+                              <li class="nav-item p-0">
+                                <a class="nav-link" p-0 href="#">PC portable</a>
+                              </li>
+                              <li class="nav-item p-0">
+                                <a class="nav-link" p-0 href="#"
+                                  >PC portable Gamer</a
+                                >
+                              </li>
+                              <li class="nav-item p-0">
+                                <a class="nav-link" p-0 href="#">UltraBook</a>
+                              </li>
+                              <li class="nav-item p-0">
+                                <a class="nav-link" p-0 href="#">NetBook</a>
+                              </li>
+                            </ul>
+                          </div>
+                          <!-- /.col-md-4 -->
+                          <div class="col-md-2">
+                            <ul class="nav flex-column">
+                              <li class="nav-item mb-0 p-0">
+                                <a
+                                  class="nav-link p-0  active font-weight-bold text-black"
+                                  >Pcs de bureau</a
+                                >
+                              </li>
+                              <li class="nav-item mb-0 p-0">
+                                <a class="nav-link" p-0 href="#">PC de Bureau</a>
+                              </li>
+                              <li class="nav-item mb-0 p-0">
+                                <a class="nav-link" p-0 href="#">PC Gamer</a>
+                              </li>
+                              <li class="nav-item mb-0 p-0">
+                                <a class="nav-link" p-0 href="#">PC Tout en un</a>
+                              </li>
+                              <li class="nav-item mb-0 p-0">
+                                <a class="nav-link" p-0 href="#">iMac</a>
+                              </li>
+                            </ul>
+                          </div>
+                          <!-- /.col-md-4 -->
+                          <div class="col-md-2">
+                            <ul class="nav flex-column">
+                              <li class="nav-item p-0">
+                                <a
+                                  class="nav-link p-0  active font-weight-bold text-black"
+                                  >Tablettes tactiles</a
+                                >
+                              </li>
+                              <li class="nav-item p-0">
+                                <a class="nav-link" p-0 href="#"
+                                  >Tablettes Android</a
+                                >
+                              </li>
+                              <li class="nav-item p-0">
+                                <a class="nav-link" p-0 href="#"
+                                  >Tablettes Windows</a
+                                >
+                              </li>
+                              <li class="nav-item p-0">
+                                <a class="nav-link" p-0 href="#">iPad</a>
+                              </li>
+                              <li class="nav-item p-0">
+                                <a class="nav-link" p-0 href="#"
+                                  >Accessoires Tablette</a
+                                >
+                              </li>
+                            </ul>
+                          </div>
+                          <!-- /.col-md-4 -->
+                          <div class="col-md-2">
+                            <ul class="nav flex-column">
+                              <li class="nav-item p-0">
+                                <a
+                                  class="nav-link p-0  active font-weight-bold text-black"
+                                  >Tablettes tactiles</a
+                                >
+                              </li>
+                              <li class="nav-item p-0">
+                                <a class="nav-link" p-0 href="#"
+                                  >Tablettes Android</a
+                                >
+                              </li>
+                              <li class="nav-item p-0">
+                                <a class="nav-link" p-0 href="#"
+                                  >Tablettes Windows</a
+                                >
+                              </li>
+                              <li class="nav-item p-0">
+                                <a class="nav-link" p-0 href="#">iPad</a>
+                              </li>
+                              <li class="nav-item p-0">
+                                <a class="nav-link" p-0 href="#"
+                                  >Accessoires Tablette</a
+                                >
+                              </li>
+                            </ul>
+                          </div>
+                          <!-- /.col-md-4 -->
+                          <div class="col-md-4 align-center ">
+                            <img
+                              class="border border-dark d-inline-block"
+                     style="top: 20px;left:65px ;  "
+                              width="250px"
+                              height="150px"
+                              src="http://connectmultimedia.nc/wp-content/uploads/2018/06/ACCESSOIRES-INFORMATIQUE.png"
+                              alt=""
+                            />
+                          </div>
+                          <!-- /.col-md-4 -->
+                        </div>
+                      </div>
+                      <!-- /.container -->
+                    </div>
+                  </li>
+                  <li class="nav-item dropdown m-0">
+                      <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        id="navbarDropdown"
+                        role="button"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                      >
+                    Destockage
+                      </a>
+                      <div
+                        class="dropdown-menu rounded-0"
+                        aria-labelledby="navbarDropdown"
+                      >
+                      <div class="container">
+                          <div class="row">
+                            <div class="col-md-2 my-0">
+                              <ul class="nav flex-column">
+                                <li class="nav-item p-0">
+                                  <a
+                                    class="nav-link p-0  active font-weight-bold text-black"
+                                    >PCs portables</a
+                                  >
+                                </li>
+                                <li class="nav-item p-0">
+                                  <a class="nav-link" p-0 href="#">PC portable</a>
+                                </li>
+                                <li class="nav-item p-0">
+                                  <a class="nav-link" p-0 href="#"
+                                    >PC portable Gamer</a
+                                  >
+                                </li>
+                                <li class="nav-item p-0">
+                                  <a class="nav-link" p-0 href="#">UltraBook</a>
+                                </li>
+                                <li class="nav-item p-0">
+                                  <a class="nav-link" p-0 href="#">NetBook</a>
+                                </li>
+                              </ul>
+                            </div>
+                            <!-- /.col-md-4 -->
+                            <div class="col-md-2">
+                              <ul class="nav flex-column">
+                                <li class="nav-item mb-0 p-0">
+                                  <a
+                                    class="nav-link p-0  active font-weight-bold text-black"
+                                    >Pcs de bureau</a
+                                  >
+                                </li>
+                                <li class="nav-item mb-0 p-0">
+                                  <a class="nav-link" p-0 href="#">PC de Bureau</a>
+                                </li>
+                                <li class="nav-item mb-0 p-0">
+                                  <a class="nav-link" p-0 href="#">PC Gamer</a>
+                                </li>
+                                <li class="nav-item mb-0 p-0">
+                                  <a class="nav-link" p-0 href="#">PC Tout en un</a>
+                                </li>
+                                <li class="nav-item mb-0 p-0">
+                                  <a class="nav-link" p-0 href="#">iMac</a>
+                                </li>
+                              </ul>
+                            </div>
+                            <!-- /.col-md-4 -->
+                            <div class="col-md-2">
+                              <ul class="nav flex-column">
+                                <li class="nav-item p-0">
+                                  <a
+                                    class="nav-link p-0  active font-weight-bold text-black"
+                                    >Tablettes tactiles</a
+                                  >
+                                </li>
+                                <li class="nav-item p-0">
+                                  <a class="nav-link" p-0 href="#"
+                                    >Tablettes Android</a
+                                  >
+                                </li>
+                                <li class="nav-item p-0">
+                                  <a class="nav-link" p-0 href="#"
+                                    >Tablettes Windows</a
+                                  >
+                                </li>
+                                <li class="nav-item p-0">
+                                  <a class="nav-link" p-0 href="#">iPad</a>
+                                </li>
+                                <li class="nav-item p-0">
+                                  <a class="nav-link" p-0 href="#"
+                                    >Accessoires Tablette</a
+                                  >
+                                </li>
+                              </ul>
+                            </div>
+                            <!-- /.col-md-4 -->
+                            <div class="col-md-2">
+                              <ul class="nav flex-column">
+                                <li class="nav-item p-0">
+                                  <a
+                                    class="nav-link p-0  active font-weight-bold text-black"
+                                    >Tablettes tactiles</a
+                                  >
+                                </li>
+                                <li class="nav-item p-0">
+                                  <a class="nav-link" p-0 href="#"
+                                    >Tablettes Android</a
+                                  >
+                                </li>
+                                <li class="nav-item p-0">
+                                  <a class="nav-link" p-0 href="#"
+                                    >Tablettes Windows</a
+                                  >
+                                </li>
+                                <li class="nav-item p-0">
+                                  <a class="nav-link" p-0 href="#">iPad</a>
+                                </li>
+                                <li class="nav-item p-0">
+                                  <a class="nav-link" p-0 href="#"
+                                    >Accessoires Tablette</a
+                                  >
+                                </li>
+                              </ul>
+                            </div>
+                            <!-- /.col-md-4 -->
+                            <div class="col-md-4 align-center ">
+                              <img
+                                class="border border-dark d-inline-block"
+                       style="top: 20px;left:65px ;  "
+                                width="250px"
+                                height="150px"
+                                src="http://connectmultimedia.nc/wp-content/uploads/2018/06/ACCESSOIRES-INFORMATIQUE.png"
+                                alt=""
+                              />
+                            </div>
+                            <!-- /.col-md-4 -->
+                          </div>
+                        </div>
+                        <!-- /.container -->
+                      </div>
+                    </li>
+                   
+                      <li class="nav-item dropdown m-0">
+                          <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            id="navbarDropdown"
+                            role="button"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                          >
+                            Sport
+                          </a>
+                          <div
+                            class="dropdown-menu rounded-0"
+                            aria-labelledby="navbarDropdown"
+                          >
+                          <div class="container">
+                              <div class="row">
+                                <div class="col-md-2 my-0">
+                                  <ul class="nav flex-column">
+                                    <li class="nav-item p-0">
+                                      <a
+                                        class="nav-link p-0  active font-weight-bold text-black"
+                                        >PCs portables</a
+                                      >
+                                    </li>
+                                    <li class="nav-item p-0">
+                                      <a class="nav-link" p-0 href="#">PC portable</a>
+                                    </li>
+                                    <li class="nav-item p-0">
+                                      <a class="nav-link" p-0 href="#"
+                                        >PC portable Gamer</a
+                                      >
+                                    </li>
+                                    <li class="nav-item p-0">
+                                      <a class="nav-link" p-0 href="#">UltraBook</a>
+                                    </li>
+                                    <li class="nav-item p-0">
+                                      <a class="nav-link" p-0 href="#">NetBook</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                                <!-- /.col-md-4 -->
+                                <div class="col-md-2">
+                                  <ul class="nav flex-column">
+                                    <li class="nav-item mb-0 p-0">
+                                      <a
+                                        class="nav-link p-0  active font-weight-bold text-black"
+                                        >Pcs de bureau</a
+                                      >
+                                    </li>
+                                    <li class="nav-item mb-0 p-0">
+                                      <a class="nav-link" p-0 href="#">PC de Bureau</a>
+                                    </li>
+                                    <li class="nav-item mb-0 p-0">
+                                      <a class="nav-link" p-0 href="#">PC Gamer</a>
+                                    </li>
+                                    <li class="nav-item mb-0 p-0">
+                                      <a class="nav-link" p-0 href="#">PC Tout en un</a>
+                                    </li>
+                                    <li class="nav-item mb-0 p-0">
+                                      <a class="nav-link" p-0 href="#">iMac</a>
+                                    </li>
+                                  </ul>
+                                </div>
+                                <!-- /.col-md-4 -->
+                                <div class="col-md-2">
+                                  <ul class="nav flex-column">
+                                    <li class="nav-item p-0">
+                                      <a
+                                        class="nav-link p-0  active font-weight-bold text-black"
+                                        >Tablettes tactiles</a
+                                      >
+                                    </li>
+                                    <li class="nav-item p-0">
+                                      <a class="nav-link" p-0 href="#"
+                                        >Tablettes Android</a
+                                      >
+                                    </li>
+                                    <li class="nav-item p-0">
+                                      <a class="nav-link" p-0 href="#"
+                                        >Tablettes Windows</a
+                                      >
+                                    </li>
+                                    <li class="nav-item p-0">
+                                      <a class="nav-link" p-0 href="#">iPad</a>
+                                    </li>
+                                    <li class="nav-item p-0">
+                                      <a class="nav-link" p-0 href="#"
+                                        >Accessoires Tablette</a
+                                      >
+                                    </li>
+                                  </ul>
+                                </div>
+                                <!-- /.col-md-4 -->
+                                <div class="col-md-2">
+                                  <ul class="nav flex-column">
+                                    <li class="nav-item p-0">
+                                      <a
+                                        class="nav-link p-0  active font-weight-bold text-black"
+                                        >Tablettes tactiles</a
+                                      >
+                                    </li>
+                                    <li class="nav-item p-0">
+                                      <a class="nav-link" p-0 href="#"
+                                        >Tablettes Android</a
+                                      >
+                                    </li>
+                                    <li class="nav-item p-0">
+                                      <a class="nav-link" p-0 href="#"
+                                        >Tablettes Windows</a
+                                      >
+                                    </li>
+                                    <li class="nav-item p-0">
+                                      <a class="nav-link" p-0 href="#">iPad</a>
+                                    </li>
+                                    <li class="nav-item p-0">
+                                      <a class="nav-link" p-0 href="#"
+                                        >Accessoires Tablette</a
+                                      >
+                                    </li>
+                                  </ul>
+                                </div>
+                                <!-- /.col-md-4 -->
+                                <div class="col-md-4 align-center ">
+                                  <img
+                                    class="border border-dark d-inline-block"
+                           style="top: 20px;left:65px ;  "
+                                    width="250px"
+                                    height="150px"
+                                    src="http://connectmultimedia.nc/wp-content/uploads/2018/06/ACCESSOIRES-INFORMATIQUE.png"
+                                    alt=""
+                                  />
+                                </div>
+                                <!-- /.col-md-4 -->
+                              </div>
+                            </div>
+                            <!-- /.container -->
+                          </div>
+                        </li>
+                        <li class="nav-item dropdown m-0">
+                            <a
+                              class="nav-link dropdown-toggle"
+                              href="#"
+                              id="navbarDropdown"
+                              role="button"
+                              data-toggle="dropdown"
+                              aria-haspopup="true"
+                              aria-expanded="false"
+                            >
+                              TV | Image & son
+                            </a>
+                            <div
+                              class="dropdown-menu rounded-0"
+                              aria-labelledby="navbarDropdown"
+                            >
+                            <div class="container">
+                                <div class="row">
+                                  <div class="col-md-2 my-0">
+                                    <ul class="nav flex-column">
+                                      <li class="nav-item p-0">
+                                        <a
+                                          class="nav-link p-0  active font-weight-bold text-black"
+                                          >PCs portables</a
+                                        >
+                                      </li>
+                                      <li class="nav-item p-0">
+                                        <a class="nav-link" p-0 href="#">PC portable</a>
+                                      </li>
+                                      <li class="nav-item p-0">
+                                        <a class="nav-link" p-0 href="#"
+                                          >PC portable Gamer</a
+                                        >
+                                      </li>
+                                      <li class="nav-item p-0">
+                                        <a class="nav-link" p-0 href="#">UltraBook</a>
+                                      </li>
+                                      <li class="nav-item p-0">
+                                        <a class="nav-link" p-0 href="#">NetBook</a>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                  <!-- /.col-md-4 -->
+                                  <div class="col-md-2">
+                                    <ul class="nav flex-column">
+                                      <li class="nav-item mb-0 p-0">
+                                        <a
+                                          class="nav-link p-0  active font-weight-bold text-black"
+                                          >Pcs de bureau</a
+                                        >
+                                      </li>
+                                      <li class="nav-item mb-0 p-0">
+                                        <a class="nav-link" p-0 href="#">PC de Bureau</a>
+                                      </li>
+                                      <li class="nav-item mb-0 p-0">
+                                        <a class="nav-link" p-0 href="#">PC Gamer</a>
+                                      </li>
+                                      <li class="nav-item mb-0 p-0">
+                                        <a class="nav-link" p-0 href="#">PC Tout en un</a>
+                                      </li>
+                                      <li class="nav-item mb-0 p-0">
+                                        <a class="nav-link" p-0 href="#">iMac</a>
+                                      </li>
+                                    </ul>
+                                  </div>
+                                  <!-- /.col-md-4 -->
+                                  <div class="col-md-2">
+                                    <ul class="nav flex-column">
+                                      <li class="nav-item p-0">
+                                        <a
+                                          class="nav-link p-0  active font-weight-bold text-black"
+                                          >Tablettes tactiles</a
+                                        >
+                                      </li>
+                                      <li class="nav-item p-0">
+                                        <a class="nav-link" p-0 href="#"
+                                          >Tablettes Android</a
+                                        >
+                                      </li>
+                                      <li class="nav-item p-0">
+                                        <a class="nav-link" p-0 href="#"
+                                          >Tablettes Windows</a
+                                        >
+                                      </li>
+                                      <li class="nav-item p-0">
+                                        <a class="nav-link" p-0 href="#">iPad</a>
+                                      </li>
+                                      <li class="nav-item p-0">
+                                        <a class="nav-link" p-0 href="#"
+                                          >Accessoires Tablette</a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+                                  <!-- /.col-md-4 -->
+                                  <div class="col-md-2">
+                                    <ul class="nav flex-column">
+                                      <li class="nav-item p-0">
+                                        <a
+                                          class="nav-link p-0  active font-weight-bold text-black"
+                                          >Tablettes tactiles</a
+                                        >
+                                      </li>
+                                      <li class="nav-item p-0">
+                                        <a class="nav-link" p-0 href="#"
+                                          >Tablettes Android</a
+                                        >
+                                      </li>
+                                      <li class="nav-item p-0">
+                                        <a class="nav-link" p-0 href="#"
+                                          >Tablettes Windows</a
+                                        >
+                                      </li>
+                                      <li class="nav-item p-0">
+                                        <a class="nav-link" p-0 href="#">iPad</a>
+                                      </li>
+                                      <li class="nav-item p-0">
+                                        <a class="nav-link" p-0 href="#"
+                                          >Accessoires Tablette</a
+                                        >
+                                      </li>
+                                    </ul>
+                                  </div>
+                                  <!-- /.col-md-4 -->
+                                  <div class="col-md-4 align-center ">
+                                    <img
+                                      class="border border-dark d-inline-block"
+                             style="top: 20px;left:65px ;  "
+                                      width="250px"
+                                      height="150px"
+                                      src="http://connectmultimedia.nc/wp-content/uploads/2018/06/ACCESSOIRES-INFORMATIQUE.png"
+                                      alt=""
+                                    />
+                                  </div>
+                                  <!-- /.col-md-4 -->
+                                </div>
+                              </div>
+                              <!-- /.container -->
+                            </div>
+                          </li>
+                          <li class="nav-item dropdown m-0">
+                              <a
+                                class="nav-link dropdown-toggle"
+                                href="#"
+                                id="navbarDropdown"
+                                role="button"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                              >
+                                Telephones
+                              </a>
+                              <div
+                                class="dropdown-menu rounded-0"
+                                aria-labelledby="navbarDropdown"
+                              >
+                              <div class="container">
+                                  <div class="row">
+                                    <div class="col-md-2 my-0">
+                                      <ul class="nav flex-column">
+                                        <li class="nav-item p-0">
+                                          <a
+                                            class="nav-link p-0  active font-weight-bold text-black"
+                                            >PCs portables</a
+                                          >
+                                        </li>
+                                        <li class="nav-item p-0">
+                                          <a class="nav-link" p-0 href="#">PC portable</a>
+                                        </li>
+                                        <li class="nav-item p-0">
+                                          <a class="nav-link" p-0 href="#"
+                                            >PC portable Gamer</a
+                                          >
+                                        </li>
+                                        <li class="nav-item p-0">
+                                          <a class="nav-link" p-0 href="#">UltraBook</a>
+                                        </li>
+                                        <li class="nav-item p-0">
+                                          <a class="nav-link" p-0 href="#">NetBook</a>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                    <!-- /.col-md-4 -->
+                                    <div class="col-md-2">
+                                      <ul class="nav flex-column">
+                                        <li class="nav-item mb-0 p-0">
+                                          <a
+                                            class="nav-link p-0  active font-weight-bold text-black"
+                                            >Pcs de bureau</a
+                                          >
+                                        </li>
+                                        <li class="nav-item mb-0 p-0">
+                                          <a class="nav-link" p-0 href="#">PC de Bureau</a>
+                                        </li>
+                                        <li class="nav-item mb-0 p-0">
+                                          <a class="nav-link" p-0 href="#">PC Gamer</a>
+                                        </li>
+                                        <li class="nav-item mb-0 p-0">
+                                          <a class="nav-link" p-0 href="#">PC Tout en un</a>
+                                        </li>
+                                        <li class="nav-item mb-0 p-0">
+                                          <a class="nav-link" p-0 href="#">iMac</a>
+                                        </li>
+                                      </ul>
+                                    </div>
+                                    <!-- /.col-md-4 -->
+                                    <div class="col-md-2">
+                                      <ul class="nav flex-column">
+                                        <li class="nav-item p-0">
+                                          <a
+                                            class="nav-link p-0  active font-weight-bold text-black"
+                                            >Tablettes tactiles</a
+                                          >
+                                        </li>
+                                        <li class="nav-item p-0">
+                                          <a class="nav-link" p-0 href="#"
+                                            >Tablettes Android</a
+                                          >
+                                        </li>
+                                        <li class="nav-item p-0">
+                                          <a class="nav-link" p-0 href="#"
+                                            >Tablettes Windows</a
+                                          >
+                                        </li>
+                                        <li class="nav-item p-0">
+                                          <a class="nav-link" p-0 href="#">iPad</a>
+                                        </li>
+                                        <li class="nav-item p-0">
+                                          <a class="nav-link" p-0 href="#"
+                                            >Accessoires Tablette</a
+                                          >
+                                        </li>
+                                      </ul>
+                                    </div>
+                                    <!-- /.col-md-4 -->
+                                    <div class="col-md-2">
+                                      <ul class="nav flex-column">
+                                        <li class="nav-item p-0">
+                                          <a
+                                            class="nav-link p-0  active font-weight-bold text-black"
+                                            >Tablettes tactiles</a
+                                          >
+                                        </li>
+                                        <li class="nav-item p-0">
+                                          <a class="nav-link" p-0 href="#"
+                                            >Tablettes Android</a
+                                          >
+                                        </li>
+                                        <li class="nav-item p-0">
+                                          <a class="nav-link" p-0 href="#"
+                                            >Tablettes Windows</a
+                                          >
+                                        </li>
+                                        <li class="nav-item p-0">
+                                          <a class="nav-link" p-0 href="#">iPad</a>
+                                        </li>
+                                        <li class="nav-item p-0">
+                                          <a class="nav-link" p-0 href="#"
+                                            >Accessoires Tablette</a
+                                          >
+                                        </li>
+                                      </ul>
+                                    </div>
+                                    <!-- /.col-md-4 -->
+                                    <div class="col-md-4 align-center ">
+                                      <img
+                                        class="border border-dark d-inline-block"
+                               style="top: 20px;left:65px ;  "
+                                        width="250px"
+                                        height="150px"
+                                        src="http://connectmultimedia.nc/wp-content/uploads/2018/06/ACCESSOIRES-INFORMATIQUE.png"
+                                        alt=""
+                                      />
+                                    </div>
+                                    <!-- /.col-md-4 -->
+                                  </div>
+                                </div>
+                                <!-- /.container -->
+                              </div>
+                            </li>
+                            <li class="nav-item dropdown m-0">
+                                <a
+                                  class="nav-link dropdown-toggle"
+                                  href="#"
+                                  id="navbarDropdown"
+                                  role="button"
+                                  data-toggle="dropdown"
+                                  aria-haspopup="true"
+                                  aria-expanded="false"
+                                >
+                                Gaming
+                                </a>
+                                <div
+                                  class="dropdown-menu rounded-0"
+                                  aria-labelledby="navbarDropdown"
+                                >
+                                <div class="container">
+                                    <div class="row">
+                                      <div class="col-md-2 my-0">
+                                        <ul class="nav flex-column">
+                                          <li class="nav-item p-0">
+                                            <a
+                                              class="nav-link p-0  active font-weight-bold text-black"
+                                              >PCs portables</a
+                                            >
+                                          </li>
+                                          <li class="nav-item p-0">
+                                            <a class="nav-link" p-0 href="#">PC portable</a>
+                                          </li>
+                                          <li class="nav-item p-0">
+                                            <a class="nav-link" p-0 href="#"
+                                              >PC portable Gamer</a
+                                            >
+                                          </li>
+                                          <li class="nav-item p-0">
+                                            <a class="nav-link" p-0 href="#">UltraBook</a>
+                                          </li>
+                                          <li class="nav-item p-0">
+                                            <a class="nav-link" p-0 href="#">NetBook</a>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                      <!-- /.col-md-4 -->
+                                      <div class="col-md-2">
+                                        <ul class="nav flex-column">
+                                          <li class="nav-item mb-0 p-0">
+                                            <a
+                                              class="nav-link p-0  active font-weight-bold text-black"
+                                              >Pcs de bureau</a
+                                            >
+                                          </li>
+                                          <li class="nav-item mb-0 p-0">
+                                            <a class="nav-link" p-0 href="#">PC de Bureau</a>
+                                          </li>
+                                          <li class="nav-item mb-0 p-0">
+                                            <a class="nav-link" p-0 href="#">PC Gamer</a>
+                                          </li>
+                                          <li class="nav-item mb-0 p-0">
+                                            <a class="nav-link" p-0 href="#">PC Tout en un</a>
+                                          </li>
+                                          <li class="nav-item mb-0 p-0">
+                                            <a class="nav-link" p-0 href="#">iMac</a>
+                                          </li>
+                                        </ul>
+                                      </div>
+                                      <!-- /.col-md-4 -->
+                                      <div class="col-md-2">
+                                        <ul class="nav flex-column">
+                                          <li class="nav-item p-0">
+                                            <a
+                                              class="nav-link p-0  active font-weight-bold text-black"
+                                              >Tablettes tactiles</a
+                                            >
+                                          </li>
+                                          <li class="nav-item p-0">
+                                            <a class="nav-link" p-0 href="#"
+                                              >Tablettes Android</a
+                                            >
+                                          </li>
+                                          <li class="nav-item p-0">
+                                            <a class="nav-link" p-0 href="#"
+                                              >Tablettes Windows</a
+                                            >
+                                          </li>
+                                          <li class="nav-item p-0">
+                                            <a class="nav-link" p-0 href="#">iPad</a>
+                                          </li>
+                                          <li class="nav-item p-0">
+                                            <a class="nav-link" p-0 href="#"
+                                              >Accessoires Tablette</a
+                                            >
+                                          </li>
+                                        </ul>
+                                      </div>
+                                      <!-- /.col-md-4 -->
+                                      <div class="col-md-2">
+                                        <ul class="nav flex-column">
+                                          <li class="nav-item p-0">
+                                            <a
+                                              class="nav-link p-0  active font-weight-bold text-black"
+                                              >Tablettes tactiles</a
+                                            >
+                                          </li>
+                                          <li class="nav-item p-0">
+                                            <a class="nav-link" p-0 href="#"
+                                              >Tablettes Android</a
+                                            >
+                                          </li>
+                                          <li class="nav-item p-0">
+                                            <a class="nav-link" p-0 href="#"
+                                              >Tablettes Windows</a
+                                            >
+                                          </li>
+                                          <li class="nav-item p-0">
+                                            <a class="nav-link" p-0 href="#">iPad</a>
+                                          </li>
+                                          <li class="nav-item p-0">
+                                            <a class="nav-link" p-0 href="#"
+                                              >Accessoires Tablette</a
+                                            >
+                                          </li>
+                                        </ul>
+                                      </div>
+                                      <!-- /.col-md-4 -->
+                                      <div class="col-md-4 align-center ">
+                                        <img
+                                          class="border border-dark d-inline-block"
+                                 style="top: 20px;left:65px ;  "
+                                          width="250px"
+                                          height="150px"
+                                          src="http://connectmultimedia.nc/wp-content/uploads/2018/06/ACCESSOIRES-INFORMATIQUE.png"
+                                          alt=""
+                                        />
+                                      </div>
+                                      <!-- /.col-md-4 -->
+                                    </div>
+                                  </div>
+                                  <!-- /.container -->
+                                </div>
+                              </li>
+                              <li class="nav-item dropdown m-0">
+                                  <a
+                                    class="nav-link dropdown-toggle"
+                                    href="#"
+                                    id="navbarDropdown"
+                                    role="button"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                  >
+                                Impression
+                                  </a>
+                                  <div
+                                    class="dropdown-menu rounded-0"
+                                    aria-labelledby="navbarDropdown"
+                                  >
+                                  <div class="container">
+                                      <div class="row">
+                                        <div class="col-md-2 my-0">
+                                          <ul class="nav flex-column">
+                                            <li class="nav-item p-0">
+                                              <a
+                                                class="nav-link p-0  active font-weight-bold text-black"
+                                                >PCs portables</a
+                                              >
+                                            </li>
+                                            <li class="nav-item p-0">
+                                              <a class="nav-link" p-0 href="#">PC portable</a>
+                                            </li>
+                                            <li class="nav-item p-0">
+                                              <a class="nav-link" p-0 href="#"
+                                                >PC portable Gamer</a
+                                              >
+                                            </li>
+                                            <li class="nav-item p-0">
+                                              <a class="nav-link" p-0 href="#">UltraBook</a>
+                                            </li>
+                                            <li class="nav-item p-0">
+                                              <a class="nav-link" p-0 href="#">NetBook</a>
+                                            </li>
+                                          </ul>
+                                        </div>
+                                        <!-- /.col-md-4 -->
+                                        <div class="col-md-2">
+                                          <ul class="nav flex-column">
+                                            <li class="nav-item mb-0 p-0">
+                                              <a
+                                                class="nav-link p-0  active font-weight-bold text-black"
+                                                >Pcs de bureau</a
+                                              >
+                                            </li>
+                                            <li class="nav-item mb-0 p-0">
+                                              <a class="nav-link" p-0 href="#">PC de Bureau</a>
+                                            </li>
+                                            <li class="nav-item mb-0 p-0">
+                                              <a class="nav-link" p-0 href="#">PC Gamer</a>
+                                            </li>
+                                            <li class="nav-item mb-0 p-0">
+                                              <a class="nav-link" p-0 href="#">PC Tout en un</a>
+                                            </li>
+                                            <li class="nav-item mb-0 p-0">
+                                              <a class="nav-link" p-0 href="#">iMac</a>
+                                            </li>
+                                          </ul>
+                                        </div>
+                                        <!-- /.col-md-4 -->
+                                        <div class="col-md-2">
+                                          <ul class="nav flex-column">
+                                            <li class="nav-item p-0">
+                                              <a
+                                                class="nav-link p-0  active font-weight-bold text-black"
+                                                >Tablettes tactiles</a
+                                              >
+                                            </li>
+                                            <li class="nav-item p-0">
+                                              <a class="nav-link" p-0 href="#"
+                                                >Tablettes Android</a
+                                              >
+                                            </li>
+                                            <li class="nav-item p-0">
+                                              <a class="nav-link" p-0 href="#"
+                                                >Tablettes Windows</a
+                                              >
+                                            </li>
+                                            <li class="nav-item p-0">
+                                              <a class="nav-link" p-0 href="#">iPad</a>
+                                            </li>
+                                            <li class="nav-item p-0">
+                                              <a class="nav-link" p-0 href="#"
+                                                >Accessoires Tablette</a
+                                              >
+                                            </li>
+                                          </ul>
+                                        </div>
+                                        <!-- /.col-md-4 -->
+                                        <div class="col-md-2">
+                                          <ul class="nav flex-column">
+                                            <li class="nav-item p-0">
+                                              <a
+                                                class="nav-link p-0  active font-weight-bold text-black"
+                                                >Tablettes tactiles</a
+                                              >
+                                            </li>
+                                            <li class="nav-item p-0">
+                                              <a class="nav-link" p-0 href="#"
+                                                >Tablettes Android</a
+                                              >
+                                            </li>
+                                            <li class="nav-item p-0">
+                                              <a class="nav-link" p-0 href="#"
+                                                >Tablettes Windows</a
+                                              >
+                                            </li>
+                                            <li class="nav-item p-0">
+                                              <a class="nav-link" p-0 href="#">iPad</a>
+                                            </li>
+                                            <li class="nav-item p-0">
+                                              <a class="nav-link" p-0 href="#"
+                                                >Accessoires Tablette</a
+                                              >
+                                            </li>
+                                          </ul>
+                                        </div>
+                                        <!-- /.col-md-4 -->
+                                        <div class="col-md-4 align-center ">
+                                          <img
+                                            class="border border-dark d-inline-block"
+                                   style="top: 20px;left:65px ;  "
+                                            width="250px"
+                                            height="150px"
+                                            src="http://connectmultimedia.nc/wp-content/uploads/2018/06/ACCESSOIRES-INFORMATIQUE.png"
+                                            alt=""
+                                          />
+                                        </div>
+                                        <!-- /.col-md-4 -->
+                                      </div>
+                                    </div>
+                                    <!-- /.container -->
+                                  </div>
+                                </li>
+                </ul>
+              </div>
+            </nav>
+    
+            
+          </div>
+          </div>
+      </div>
+      
+    </header>
+
+    <main id="container" class="container-fluid pt-0 px-0">
+     
+      <!--
+        <nav class="container rounded-0" aria-label="breadcrumb ">
+          <ol class="breadcrumb container-fluid rounded-0 ">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Library</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Data</li>
+          </ol>
+        </nav>
+      -->
+      <div class="espace "></div>
+      <div class=" container-fluid px-0  row ">
+          
+      <div class="side-menu  col-2 d-lg-inline-block d-xl-inline-block d-none mt-2">
+
+          <div    class="card border h-100 ml-2 mr-0 border-secondary rounded-0" style="width: 100%;">
+              <div class="card-header font-weight-bold rounded-0 text-center" style="background-color:rgba(148, 147, 147, 0.795);"  >
+             Promotion
+             
+              </div>
+              <ul  class="list-group list-group-flush ">
+                   
+                
+              </ul>
+          </div>
+
+
+      </div>
+      <div id="products" class="container-fluid col-10 d-flex">
+
+        <div id="order" calss="container-fluid col-8">
+          <div id="table" class="mt-2">
+             <div    class="card border border-secondary ml-2 rounded-0" style="width: 100%;">
+                 <div class="card-header font-weight-bold rounded-0" style="background-color:rgba(148, 147, 147, 0.795);"  >
+                Panier
+                <span id="span-panel-title" class="font-weight-bold ml-3"></span>
+                 </div>
+                 <ul id="ul-prod" class="list-group list-group-flush ">
+                      
+                   
+                 </ul>
+             </div>
+           </div>
+           <div  id="total" class="col-4" >
+               <div window.onload="loadPanel()" class="card border border-secondary" style="width: 100%;">
+                   <ul class="list-group list-group-flush">
+                     <li class="list-group-item font-weight-bold">Total TTC </li>
+                     <li class="list-group-item montant  font-weight-bold text-primary">0,000 TND</li>
+                     <li class="list-group-item mx-auto"><button onclick="command() " type="button" class="btn btn-secondary">Commander</button></li>
+                   </ul>
+                 </div>
+               
+           </div>
+       </div>
+
+      </div>
+      </div>
+    </main>
+    <footer
+      id="footer"
+      class="container-fluid  d-flex justify-content-center align-items-center"
+    >
+      <p class="font-weight-bold m-2 ">Copyright - 2018</p>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"
+    ></script>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+    <script src="loding_edit Panel.js"></script>
+  </body>
+</html>

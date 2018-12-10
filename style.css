@@ -1,0 +1,398 @@
+.body {
+}
+#container {
+  background-color: white;
+  height: 100%;
+  padding-top: 10px;
+  border-radius: 10px;
+  padding-bottom: 20px;
+  z-index: 2;
+  min-width: 350px;
+}
+.header {
+  background-color: white;
+  /*position: fixed;*/
+  padding-top: 0;
+  z-index: 3;
+  min-height: 150px;
+  height: auto;
+}
+.header-sticky {
+  background-color: white;
+  /*position: fixed;*/
+  padding-top: 0;
+  z-index: 3;
+  height: auto;
+}
+/*
+#dropDown {
+  margin-right: 25%;
+  margin-left: 15%;
+  /*background-color: blueviolet;
+  height: 100px;*/ /*
+}
+
+.dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+.dropdown > .dropdown-toggle:active {
+  /*Without this, clicking will make it sticky*/
+/*  pointer-events: none;
+}*/
+
+.espace {
+  height: 50px;
+}
+.drop-content {
+  display: flex;
+}
+
+.ok {
+  background-color: transparent;
+  color: white !important;
+}
+/*.ok:hover {
+  background-color: greenyellow;
+}
+*/
+#btn-panier {
+  /*margin-left: 60%*/
+  margin-right: 5px;
+  margin-bottom: 0px;
+}
+#footer {
+  margin-top: 5px;
+  height: 60px;
+  background-color: rgba(128, 128, 128, 0.582);
+  /* border-radius: 10px;*/
+}
+#list-produit {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  z-index: -1;
+}
+.cardx {
+  margin: 5px;
+  /* border-radius: 10px !important; */
+}
+/* .cardx:hover {
+  border-color: darkgreen !important;
+  border-width: 2px !important;
+} */
+.btn-panel {
+  display: none;
+}
+
+#container_carte {
+  background-color: white;
+  height: auto;
+  padding-top: 70px;
+  border-radius: 10px;
+  padding-bottom: 20px;
+}
+#order {
+}
+#total {
+  margin: 10px 0;
+  width: 100%;
+  min-width: 200px;
+  background-color: none;
+  padding: 10px;
+}
+#table {
+}
+@media only screen and (max-width: 970px) {
+  .btn-panel {
+    display: inline-block;
+  }
+  .btn-large {
+    display: none;
+  }
+  #order {
+    display: block;
+  }
+}
+
+.item-properties {
+  display: flex;
+  list-style: none;
+  padding: 0px;
+}
+
+.item-img {
+  margin: 0 5px 0 0;
+  width: 230px;
+}
+.item-descreption {
+  margin: 0 5px;
+  min-width: 200px;
+}
+.item-pu {
+  margin: 0 5px;
+  min-width: 50px;
+}
+.item-qte {
+  margin: 0 5px;
+  min-width: 50px;
+}
+.item-montant {
+  margin: 0 5px;
+  width: 120px;
+}
+.disp {
+  color: green;
+  font-weight: 400;
+}
+.prix {
+  color: blue;
+  font-weight: 600;
+}
+.side-menu {
+  height: 500px;
+}
+.input-qte {
+  width: 140px;
+  padding: 0;
+  align-content: center;
+  padding: 0;
+}
+.remove-item {
+  cursor: pointer;
+}
+#top-header {
+  height: auto;
+  background-color: rgba(236, 20, 20, 0.795);
+}
+#menu {
+  z-index: 1;
+}
+#bottom-header {
+  background-color: rgba(153, 50, 204, 0.514);
+}
+/* for sticky header*/
+body {
+  margin: 0;
+}
+
+.top-container {
+  background-color: #f1f1f1;
+  padding: 30px;
+  text-align: center;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding-top: 152px;
+  z-index: 3;
+}
+
+/*******************************/
+@media only screen and (max-width: 755px) {
+  .btn-panel {
+    display: inline-block;
+  }
+  .btn-large {
+    display: none;
+  }
+  #order {
+    display: block;
+  }
+}
+.logo {
+  height: 100px;
+  width: 180px;
+  padding-bottom: 15px;
+}
+.logo-sticky {
+  height: 60px;
+  width: 130px;
+  padding-bottom: 1px;
+}
+.cart-shopping {
+  color: rgb(66, 65, 65);
+  margin-left: 10px;
+}
+.cart-shopping:hover {
+  color: rgb(101, 147, 245);
+}
+#span-panier2 {
+  bottom: 34px;
+  left: 37px;
+}
+.wishlist {
+  color: rgb(66, 65, 65);
+  margin-left: 10px;
+  padding-bottom: 3px;
+}
+.wishlist:hover {
+  color: rgb(101, 147, 245);
+}
+.user {
+  color: rgb(66, 65, 65);
+  margin-left: 30px;
+}
+.user:hover {
+  color: rgb(101, 147, 245);
+}
+#span-wishlist {
+  bottom: 24px;
+  left: 31px;
+}
+.collapse-panel {
+  position: fixed;
+  width: 300px;
+  z-index: 3;
+  /*
+  margin-top: 98px;
+  top: 40px;
+  left: 710px;*/
+}
+/*menu produit 1 */
+
+.mega-menu {
+  width: 800px;
+  overflow: hidden;
+  padding: 7px;
+  z-index: 3;
+}
+.mega-menu a {
+  text-decoration: none;
+  color: cadetblue;
+}
+.mega-menu .sub-menu-heading {
+  color: darkcyan;
+}
+
+@media (max-width: 500px) {
+  .mega-menu {
+    width: 300px;
+  }
+}
+
+/*menu produit 2 */
+/* adds some margin below the link sets  */
+.navbar .dropdown-menu div[class*="col"] {
+  margin-bottom: 1rem;
+}
+.dropdown-toggle::after {
+  display: none;
+}
+.navbar .dropdown-menu {
+  border: none;
+  background-color: white !important;
+}
+
+/* breakpoint and up - mega dropdown styles */
+@media screen and (min-width: 992px) {
+  /* remove the padding from the navbar so the dropdown hover state is not broken */
+  .navbar {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+  /* remove the padding from the nav-item and add some margin to give some breathing room on hovers */
+  .navbar .nav-item {
+    padding: 0.5rem 0.5rem;
+    margin: 0 0rem;
+  }
+
+  /* makes the dropdown full width  */
+  .navbar .dropdown {
+    position: static;
+  }
+
+  .navbar .dropdown-menu {
+    width: 100%;
+    left: 0;
+    right: 0;
+    /*  height of nav-item  */
+    top: 55px;
+
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s linear;
+  }
+
+  /* shows the dropdown menu on hover */
+  .navbar .dropdown:hover .dropdown-menu,
+  .navbar .dropdown .dropdown-menu:hover {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity 0.3s linear;
+  }
+
+  .navbar .dropdown-menu {
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+  }
+}
+.svg {
+  fill: white;
+  padding-right: 10px;
+}
+.svg:hover {
+}
+.social {
+  width: 170px;
+}
+.svg-youtube {
+  fill: white;
+  padding-right: 10px;
+}
+.svg-youtube:hover {
+}
+.location {
+}
+.responsive-img {
+  width: 100%;
+  height: auto;
+}
+.wform {
+  width: 70%;
+}
+@media screen and (min-width: 100px) {
+  /* remove the padding from the navbar so the dropdown hover state is not broken */
+  .wform {
+    width: 100%;
+  }
+}
+.ul-p {
+  list-style: none;
+  z-index: 1;
+}
+/** vertical center***/
+.vertical-center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+/*user dropbox*/
+.show > .dropdown-menu {
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* side menu products*/
+.side-menu-product {
+  width: 250px;
+
+  height: 400px;
+  margin-top: 5px;
+}
+/* carousel -1*/
+#owl-demo .item {
+  margin: 3px;
+}
+#owl-demo .item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
